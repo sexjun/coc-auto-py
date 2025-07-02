@@ -8,6 +8,17 @@
     1. 国服夜世界：  python play_game_by_adb.py
     2. 国际服主世界： python main_world.py
 ```
+## python环境配置
+
+```shell
+
+# 导出当前环境（包含版本信息）
+conda env export > environment.yaml
+
+# 只导出手动安装的包（不包含依赖包，文件更简洁）
+conda env export --from-history > environment.yaml
+```
+
 
 模拟器分辨率：
 ![alt text](image.png)
