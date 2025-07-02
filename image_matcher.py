@@ -382,5 +382,22 @@ def main():
     return 0
 
 
+def match_and_click(image_path, threshold=0.6, debug_path="debug_match.png"):
+    """
+    查找并点击指定图片的位置
+    :param image_path: 图片路径
+    :param threshold: 匹配阈值
+    """
+    position = match_image(image_path, threshold=threshold, debug_path=debug_path)
+    if position:
+        x, y = position
+        pyautogui.click(x, y)  # 点击匹配位置
+        print(f"找到匹配位置：({x}, {y})", image_path)
+        return x, y
+    else:
+        print("未找到匹配位置", image_path)
+        return -1, -1
+
+
 if __name__ == "__main__":
     main()

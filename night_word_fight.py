@@ -1,23 +1,6 @@
-from image_matcher import match_image
+from image_matcher import match_image, match_and_click
 import pyautogui
 import time
-
-
-def match_and_click(image_path, threshold=0.6):
-    """
-    查找并点击指定图片的位置
-    :param image_path: 图片路径
-    :param threshold: 匹配阈值
-    """
-    position = match_image(image_path, threshold=threshold)
-    if position:
-        x, y = position
-        pyautogui.click(x, y)  # 点击匹配位置
-        print(f"找到匹配位置：({x}, {y})", image_path)
-        return x, y
-    else:
-        print("未找到匹配位置", image_path)
-        return -1, -1
 
 
 import time
@@ -25,7 +8,7 @@ import pyautogui
 
 
 def found_shuizhe_view():
-    x, y = match_and_click("./zhong-lou.png", threshold=0.5)
+    x, y = match_and_click("./night_world/zhong-lou.png", threshold=0.5)
     if x == -1 or y == -1:
         print("未找到中楼按钮，无法执行操作")
         return
@@ -34,20 +17,20 @@ def found_shuizhe_view():
     pyautogui.scroll(-500)
     pyautogui.scroll(-500)
     pyautogui.scroll(-500)
-    x, y = match_and_click("./base_.png", threshold=0.5)  # 查找圣水按钮
+    x, y = match_and_click("./night_world/base_.png", threshold=0.5)  # 查找圣水按钮
     time.sleep(1)  # 等待1秒
     pyautogui.dragRel(0, 100, duration=0.2)  # 拖动到圣水位置
     pyautogui.dragRel(0, 100, duration=0.2)  # 拖动到圣水位置
 
 
 def collect_shengshui():
-    x, y = match_and_click("./shui_che.png", threshold=0.6)  # 查找圣水按钮
+    x, y = match_and_click("./night_world/shui_che.png", threshold=0.6)  # 查找圣水按钮
     if x == -1 or y == -1:
         print("未找到圣水车，无法收集圣水")
         return
-    x, y = match_and_click("./shou-ji.png", threshold=0.6)  # 查找圣水按钮
+    x, y = match_and_click("./night_world/shou-ji.png", threshold=0.6)  # 查找圣水按钮
     time.sleep(1)  # 等待1秒
-    x, y = match_and_click("./x.png", threshold=0.6)  # 查找圣水按钮
+    x, y = match_and_click("./night_world/x.png", threshold=0.6)  # 查找圣水按钮
 
 
 def auto_game_battle(times=1):
@@ -62,13 +45,15 @@ def auto_game_battle(times=1):
 
         try:
             # 初始化战斗
-            match_and_click("./jingong.png")
+            match_and_click("./night_world/jingong.png")
             match_and_click(
-                "./li-ji-xun-zhao.png", threshold=0.4
+                "./night_world/li-ji-xun-zhao.png", threshold=0.4
             )  # 调整阈值以提高匹配灵活度
 
             time.sleep(4)  # 等待4秒
-            x, y = match_and_click("./ying-xiong.png", threshold=0.8)  # 查找英雄位置
+            x, y = match_and_click(
+                "./night_world/ying-xiong.png", threshold=0.8
+            )  # 查找英雄位置
 
             yingyong_x = x
             yingyong_y = y
@@ -113,13 +98,15 @@ def auto_game_battle(times=1):
                 pyautogui.click(yingyong_x, yingyong_y)
 
                 # 检查是否出现回营按钮
-                x_hui, y_hui = match_and_click("./hui_ying.png", threshold=0.9)
+                x_hui, y_hui = match_and_click(
+                    "./night_world/hui_ying.png", threshold=0.9
+                )
                 if x_hui != -1 and y_hui != -1:
                     print(f"第 {battle_round} 轮：发现回营按钮，战斗结束")
                     break
 
                 # 检查是否出现结束按钮
-                x_end, y_end = match_and_click("./2.png", threshold=0.9)
+                x_end, y_end = match_and_click("./night_world/2.png", threshold=0.9)
                 if x_end != -1 and y_end != -1:
                     print(f"第 {battle_round} 轮：发现结束按钮，执行结束流程")
                     # 放置英雄
@@ -135,9 +122,9 @@ def auto_game_battle(times=1):
                         pyautogui.click(new_x, y)  # 点击匹配位置
                         duration = 240
 
-                    # match_and_click("./jieshu.png", threshold=0.9)  # 点击结束按钮
-                    # match_and_click("./queren.png", threshold=0.9)  # 点击确认按钮
-                    # match_and_click("./hui_ying.png", threshold=0.9)  # 再次查找回营按钮
+                    # match_and_click("./night_world/jieshu.png", threshold=0.9)  # 点击结束按钮
+                    # match_and_click("./night_world/queren.png", threshold=0.9)  # 点击确认按钮
+                    # match_and_click("./night_world/hui_ying.png", threshold=0.9)  # 再次查找回营按钮
                     # break
 
                 count += 1
