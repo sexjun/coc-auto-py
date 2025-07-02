@@ -25,7 +25,7 @@ class TemplateMatcher:
         self.last_screenshot_time = 0
 
     def take_screenshot(
-        self, force_new=False, save_path=Path(__file__).parent / "screenshot.png"
+        self, force_new=False, save_path=Path(__file__).parent / "tmp_img_save_folder/screenshot.png"
     ):
         """
         获取手机屏幕截图
@@ -302,9 +302,9 @@ if __name__ == "__main__":
         matcher = TemplateMatcher(adb)
 
         # 示例1: 查找单个模板
-        template_path = "templates/button.png"  # 替换为实际的模板图片路径
+        template_path = "tmp_img_save_folder/templates/button.png"  # 替换为实际的模板图片路径
         result = matcher.find_template(
-            template_path, threshold=0.7, debug_image="debug_match.png"
+            template_path, threshold=0.7, debug_image="tmp_img_save_folder/debug_match.png"
         )
 
         if result:
@@ -318,16 +318,16 @@ if __name__ == "__main__":
 
         # 示例2: 查找和点击
         success = matcher.find_and_tap(
-            "templates/icon.png", threshold=0.7, debug_image="debug_tap.png"
+            "tmp_img_save_folder/templates/icon.png", threshold=0.7, debug_image="tmp_img_save_folder/debug_tap.png"
         )
         print(f"点击结果: {'成功' if success else '失败'}")
 
         # 示例3: 查找多个匹配
         matches = matcher.find_all_templates(
-            "templates/item.png",
+            "tmp_img_save_folder/templates/item.png",
             threshold=0.7,
             max_results=5,
-            debug_image="debug_multiple.png",
+            debug_image="tmp_img_save_folder/debug_multiple.png",
         )
         print(f"共找到 {len(matches)} 个匹配")
 

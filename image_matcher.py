@@ -13,7 +13,7 @@ def match_image(
     find_all=False,
     max_results=10,
     save_debug=True,
-    debug_path="debug_match.png",
+    debug_path="./tmp_img_save_folder/debug_match.png",
 ):
     """
     简易包装函数，在屏幕中查找指定图像，并可选择保存调试图像
@@ -274,7 +274,7 @@ def find_all_matches(
     return center_points
 
 
-def save_debug_image(template_path, matches=None, output_path="debug_match.png"):
+def save_debug_image(template_path, matches=None, output_path="./tmp_img_save_folder/debug_match.png"):
     """
     保存带有匹配结果标记的截图，用于调试
 
@@ -382,7 +382,7 @@ def main():
     return 0
 
 
-def match_and_click(image_path, threshold=0.6, debug_path="debug_match.png"):
+def match_and_click(image_path, threshold=0.6, debug_path="./tmp_img_save_folder/debug_match.png"):
     """
     查找并点击指定图片的位置
     :param image_path: 图片路径
