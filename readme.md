@@ -15,12 +15,13 @@
 # 导出当前环境（包含版本信息）
 conda env export > environment.yaml
 
-# 只导出手动安装的包（不包含依赖包，文件更简洁）
-conda env export --from-history > environment.yaml
+# 创建新环境（环境名会自动从文件中读取）
+conda env create -f environment.yaml
 ```
 
 
 模拟器分辨率：
+我个人使用的是MOMO模拟器， ADB连接参考： [MOMO adb doucument](https://mumu.163.com/help/20220721/35047_730476.html)
 ![alt text](image.png)
 
 ## 项目架构
