@@ -3,6 +3,13 @@ import pyautogui
 import time
 
 
+# """
+
+# 自动游戏战斗函数
+# 这里是根据当前屏幕截图进行匹配的，模拟器不能隐藏，已经废弃。改为使用adb控制器。
+# 该文件备份，留着以后参考
+# """
+
 import time
 import pyautogui
 
